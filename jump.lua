@@ -5,9 +5,9 @@ local player = Players.LocalPlayer
 -- Variables
 local autoJumpEnabled = true -- langsung aktif
 local minDelay = 5
-local maxDelay = 30
+local maxDelay = 15
 local minJumps = 1
-local maxJumps = 40
+local maxJumps = 15
 local jumpCount = 0
 
 -- GUI
