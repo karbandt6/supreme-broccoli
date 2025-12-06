@@ -3,25 +3,31 @@ local VirtualUser = game:GetService("VirtualUser")
 local LocalPlayer = Players.LocalPlayer
 math.randomseed(tick())
 
--- Fungsi notifikasi sederhana
+-- Fungsi notifikasi vertikal hijau
 local function showNotification(message)
     local screenGui = Instance.new("ScreenGui", LocalPlayer:WaitForChild("PlayerGui"))
     screenGui.Name = "Notification_" .. math.random(1,999999)
 
     local textLabel = Instance.new("TextLabel", screenGui)
     textLabel.Size = UDim2.new(1, 0, 0, 50)
-    textLabel.Position = UDim2.new(0, 0, 0.05, 0) -- di tengah atas layar
+    textLabel.Position = UDim2.new(0, 0, -0.1, 0) -- start di atas layar
     textLabel.BackgroundTransparency = 1
     textLabel.Text = message
     textLabel.TextColor3 = Color3.fromRGB(0, 255, 0) -- hijau neon
     textLabel.Font = Enum.Font.GothamSemibold
     textLabel.TextScaled = true
-    textLabel.TextStrokeTransparency = 0.5 -- biar mudah dibaca
+    textLabel.TextStrokeTransparency = 0.5
 
-    -- Hilang setelah 1 detik
-    task.delay(1, function()
-        screenGui:Destroy()
-    end)
+    -- Animasi turun dari atas ke bawah (mentok)
+    local steps = 60
+    for i = 0, steps do
+        local posY = -0.1 + i*(1.1/steps) -- -0.1 ke 1.0 (mentok bawah)
+        textLabel.Position = UDim2.new(0,0,posY,0)
+        task.wait(0.01)
+    end
+
+    -- Hilang setelah selesai
+    screenGui:Destroy()
 end
 
 -- Loop Anti-AFK dengan random interval 15-30 detik
