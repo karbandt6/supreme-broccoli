@@ -33,7 +33,7 @@ end
 -- Loop Anti-AFK dengan random interval 15-30 detik
 task.spawn(function()
     while true do
-        local waitTime = math.random(15,30)
+        local waitTime = math.random(3,8)
         task.wait(waitTime)
 
         -- Fake click virtual
